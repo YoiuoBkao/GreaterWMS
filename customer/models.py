@@ -1,0 +1,21 @@
+from django.db import models
+
+class Customer(models.Model):
+    customer_name = models.CharField(max_length=200, unique=True, verbose_name='客户名称')
+    customer_city = models.CharField(max_length=100, verbose_name='城市')
+    customer_address = models.CharField(max_length=300, verbose_name='地址')
+    customer_contact = models.CharField(max_length=100, verbose_name='联系人')
+    customer_manager = models.CharField(max_length=100, verbose_name='负责人')
+    customer_level = models.CharField(max_length=50, verbose_name='客户等级')
+    create_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
+    update_time = models.DateTimeField(auto_now=True, verbose_name='更新时间')
+    is_delete = models.BooleanField(default=False, verbose_name='是否删除')
+
+    class Meta:
+        db_table = 'customer'
+        verbose_name = '客户'
+        verbose_name_plural = '客户'
+        ordering = ['-create_time']
+
+    def __str__(self):
+        return self.customer_name
