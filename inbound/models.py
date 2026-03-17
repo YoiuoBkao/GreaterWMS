@@ -35,9 +35,9 @@ class AsnDetail(models.Model):
         on_delete=models.PROTECT,
         verbose_name='商品'
     )
-    expected_qty = models.IntegerField(default=0, verbose_name='预计数量')
-    actual_qty = models.IntegerField(default=0, verbose_name='实际数量')
-    sorted_qty = models.IntegerField(default=0, verbose_name='分拣数量')
+    expected_qty = models.PositiveIntegerField(default=0, verbose_name='预计数量')
+    actual_qty = models.PositiveIntegerField(default=0, verbose_name='实际数量')
+    sorted_qty = models.PositiveIntegerField(default=0, verbose_name='分拣数量')
     goods_unit = models.CharField(max_length=50, verbose_name='单位')
     create_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
     update_time = models.DateTimeField(auto_now=True, verbose_name='更新时间')

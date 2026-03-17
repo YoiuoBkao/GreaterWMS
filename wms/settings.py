@@ -4,7 +4,13 @@ from datetime import timedelta
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-wms-secret-key-change-in-production-2024')
+_secret_key = os.environ.get('SECRET_KEY')
+if not _secret_key:
+    _debug_mode = os.environ.get('DEBUG', 'True') == 'True'
+    if not _debug_mode:
+        raise ValueError('SECRET_KEY environment variable must be set in production (DEBUG=False).')
+    _secret_key = 'django-insecure-wms-secret-key-change-in-production-2024'
+SECRET_KEY = _secret_key
 
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
@@ -112,6 +118,7 @@ _cors_origins_env = os.environ.get('CORS_ALLOWED_ORIGINS', '')
 if _cors_origins_env:
     CORS_ALLOWED_ORIGINS = [o.strip() for o in _cors_origins_env.split(',') if o.strip()]
 else:
+    # Allow all origins in development only; set CORS_ALLOWED_ORIGINS in production
     CORS_ALLOW_ALL_ORIGINS = DEBUG
 
 CORS_ALLOW_CREDENTIALS = True

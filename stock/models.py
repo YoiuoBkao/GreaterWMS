@@ -8,7 +8,7 @@ class Stock(models.Model):
     )
     warehouse_name = models.CharField(max_length=200, verbose_name='仓库名称')
     bin_name = models.CharField(max_length=100, verbose_name='货位名称')
-    goods_qty = models.IntegerField(default=0, verbose_name='库存数量')
+    goods_qty = models.PositiveIntegerField(default=0, verbose_name='库存数量')
     goods_unit = models.CharField(max_length=50, verbose_name='商品单位')
     create_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
     update_time = models.DateTimeField(auto_now=True, verbose_name='更新时间')

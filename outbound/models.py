@@ -35,9 +35,9 @@ class DnDetail(models.Model):
         on_delete=models.PROTECT,
         verbose_name='商品'
     )
-    plan_qty = models.IntegerField(default=0, verbose_name='计划数量')
-    pick_qty = models.IntegerField(default=0, verbose_name='拣货数量')
-    shipped_qty = models.IntegerField(default=0, verbose_name='发运数量')
+    plan_qty = models.PositiveIntegerField(default=0, verbose_name='计划数量')
+    pick_qty = models.PositiveIntegerField(default=0, verbose_name='拣货数量')
+    shipped_qty = models.PositiveIntegerField(default=0, verbose_name='发运数量')
     goods_unit = models.CharField(max_length=50, verbose_name='单位')
     create_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
     update_time = models.DateTimeField(auto_now=True, verbose_name='更新时间')
